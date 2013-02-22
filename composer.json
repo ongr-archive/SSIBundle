@@ -1,0 +1,36 @@
+{
+    "name": "crunch/ssi-bundle",
+    "description": "Server Side Includes (SSI) fragment renderer for Symfony2 applications",
+    "type": "symfony-bundle",
+    "keywords": ["ssi"],
+    "homepage": "http://crunchssibundle.readthedocs.org/en/latest/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Krebs",
+            "email": "krebs.seb@gmail.com",
+            "homepage": "http://www.kingcrunch.de",
+            "role": "Maintainer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.2,<2.3-dev"
+    },
+    "support": {
+        "email": "krebs.seb@gmail.com",
+        "issues": "https://github.com/CrunchPHP/SSIBundle/issues"
+    },
+    "autoload": {
+        "psr-0": {
+            "Crunch\\Bundle\\SSIBundle": ""
+        }
+    },
+    "target-dir": "Crunch/Bundle/SSIBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0"
+        }
+    }
+}

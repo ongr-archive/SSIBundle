@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="crunch_ssi.listener.class">Crunch\Bundle\SSIBundle\EventListener\SSIListener</parameter>
+        <parameter key="crunch_ssi.fragment_renderer.class">Crunch\Bundle\SSIBundle\FragmentRenderer\SSIRenderer</parameter>
+        <parameter key="crunch_ssi.use_header">false</parameter>
+        <parameter key="crunch_ssi.inline">false</parameter>
+    </parameters>
+
+    <services>
+        <service id="ssi_listener" class="%crunch_ssi.listener.class%">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setUseHeader"><argument>%crunch_ssi.use_header%</argument></call>
+        </service>
+
+        <service id="fragment.renderer.ssi" class="%crunch_ssi.fragment_renderer.class%">
+            <tag name="kernel.fragment_renderer" alias="ssi"/>
+            <argument type="service" id="uri_signer"/>
+            <argument type="service" id="fragment.renderer.inline"/>
+            <call method="setFragmentPath"><argument>%fragment.path%</argument></call>
+            <call method="setUseHeader"><argument>%crunch_ssi.use_header%</argument></call>
+            <call method="setInline"><argument>%crunch_ssi.inline%</argument></call>
+        </service>
+    </services>
+</container>
