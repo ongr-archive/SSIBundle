@@ -30,7 +30,7 @@
     "target-dir": "Crunch/Bundle/SSIBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0"
+            "dev-master": "1.0.*-dev"
         }
     }
 }
