@@ -18,8 +18,6 @@ Within twig
 
     {{ render('/path/to/interal', {strategy: 'ssi'}) }}
 
-To avoid problems because of an "unknown fragment renderer" it is always enabled.
-
 The kernel proxy
 ----------------
 Usually it should be sufficient to set `inline` to `true` during development. However, there is a
@@ -31,25 +29,30 @@ kernel proxy you can use, that will act as SSI-capable server. In your `app_dev.
     $kernel->run();
     $kernel->terminate();
 
-
-
 Configuration
 =============
 
     crunch_ssi:
-        inline: false
-        use_header: true
+        inline:     false
+        use_header: false
 
-| Option       | default | Description
-| ------------ | ------- | -----------
-| `inline`     | `false` | Whether, or not the fragment renderer should always fallback
-                           to the inline-fragment renderer. Technically this disables
-                           the rendering of the SSI-tags
-| `use_header` | `false` | Whether, or not the bundle should respect both request and
-                           response headers. If set to `true` it will fallback to the
-                           inline-fragment-renderer, when there is no `Surrogate-Capability`-
-                           request-header set, and it will add a `Surrogate-Control`-
-                           header to the response
+| Option       | Description
+|--------------| -------------------------------------
+| `inline`     | Whether, or not to _always_ use the inline-fragment renderer.
+| `use_header` | Whether, or not respect request and create response headers.
+
+`inline` technically disables the rendering of the SSI-tags completely. This is useful,
+if you don't want to use SSI anymore, but have several calls to the SSI fragment-renderer
+within your templates, which else will lead to a "unknown renderer 'ssi'". Also it is
+useful for development.
+
+If `use_header` is set to `true` it will fallback to the inline-fragment-renderer, but only
+when there is no `Surrogate-Capability`-request-header set. Additional and it will add a
+`Surrogate-Control`-header to the response.
+
+Note, that the default inline-fragment-renderer does not respect any cache headers. So if you
+have short-living partials, that you want to render within other templates, they may be served
+within a page even if they are theoretically outdated.
 
 A Note about Nginx
 ==================
