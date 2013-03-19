@@ -11,12 +11,12 @@
     </parameters>
 
     <services>
-        <service id="ssi_listener" class="%crunch_ssi.listener.class%">
+        <service id="crunch_ssi.ssi_listener" class="%crunch_ssi.listener.class%">
             <tag name="kernel.event_subscriber"/>
             <call method="setUseHeader"><argument>%crunch_ssi.use_header%</argument></call>
         </service>
 
-        <service id="fragment.renderer.ssi" class="%crunch_ssi.fragment_renderer.class%">
+        <service id="crunch_ssi.fragment.renderer.ssi" class="%crunch_ssi.fragment_renderer.class%">
             <tag name="kernel.fragment_renderer" alias="ssi"/>
             <argument type="service" id="uri_signer"/>
             <argument type="service" id="fragment.renderer.inline"/>
