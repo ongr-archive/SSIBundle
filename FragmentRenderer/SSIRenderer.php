@@ -1,14 +1,15 @@
 <?php
 namespace Crunch\Bundle\SSIBundle\FragmentRenderer;
 
-use Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\UriSigner;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
-use Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer,
-    Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
+use Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer;
+use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
 
-class SsiRenderer extends RoutableFragmentRenderer {
+class SsiRenderer extends RoutableFragmentRenderer
+{
     /**
      * Fallback inline fragment renderer
      *
@@ -29,12 +30,14 @@ class SsiRenderer extends RoutableFragmentRenderer {
     protected $useHeader = false;
     protected $substitute = false;
 
-    public function __construct(UriSigner $signer, InlineFragmentRenderer $defaultStrategy) {
+    public function __construct(UriSigner $signer, InlineFragmentRenderer $defaultStrategy)
+    {
         $this->defaultStrategy = $defaultStrategy;
         $this->signer = $signer;
     }
 
-    public function render($uri, Request $request, array $options = array()) {
+    public function render($uri, Request $request, array $options = array())
+    {
         if ($this->substitute || $this->useHeader && \strpos($request->headers->get('Surrogate-Capability', ''), 'SSI/1.0')) {
             return $this->defaultStrategy->render($uri, $request, $options);
         }
@@ -52,7 +55,10 @@ class SsiRenderer extends RoutableFragmentRenderer {
         return new Response(\sprintf('<!--#include virtual="%s" -->', $uri));
     }
 
-    public function getName() { return 'ssi'; }
+    public function getName()
+    {
+        return 'ssi';
+    }
 
     /**
      * Whether or not the renderer should respect the Surrogate-Capability header
@@ -66,7 +72,10 @@ class SsiRenderer extends RoutableFragmentRenderer {
      *
      * @param boolean $respectHeader
      */
-    public function setUseHeader ($respectHeader) { $this->useHeader = $respectHeader; }
+    public function setUseHeader ($respectHeader)
+    {
+        $this->useHeader = $respectHeader;
+    }
 
     /**
      * Whether or not the content should be rendered inline always
@@ -76,5 +85,8 @@ class SsiRenderer extends RoutableFragmentRenderer {
      *
      * @param boolean $substitute
      */
-    public function setInline ($substitute) { $this->substitute = $substitute; }
+    public function setInline ($substitute)
+    {
+        $this->substitute = $substitute;
+    }
 }

@@ -1,13 +1,14 @@
 <?php
 namespace Crunch\Bundle\SSIBundle\EventListener;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface,
-    Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
-class SSIListener implements EventSubscriberInterface {
+class SSIListener implements EventSubscriberInterface
+{
     /**
      * Whether or not the `Surrogate-Control`-header should be set
      *
@@ -22,14 +23,18 @@ class SSIListener implements EventSubscriberInterface {
      *
      * @param bool $useHeader
      */
-    public function setUseHeader ($useHeader) { $this->useHeader = $useHeader; }
+    public function setUseHeader ($useHeader)
+    {
+        $this->useHeader = $useHeader;
+    }
 
     /**
      * Event-Methodname-map of events to listen for
      *
      * @return array
      */
-    public static function getSubscribedEvents () {
+    public static function getSubscribedEvents ()
+    {
         return array(
             KernelEvents::RESPONSE => 'updateHeader',
         );
@@ -38,9 +43,10 @@ class SSIListener implements EventSubscriberInterface {
     /**
      * If $useHeader is set adds SSI-header to the response
      *
-     * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
+     * @param FilterResponseEvent $event
      */
-    public function updateHeader(FilterResponseEvent $event) {
+    public function updateHeader(FilterResponseEvent $event)
+    {
         if ($this->useHeader && $event->getRequestType() == HttpKernelInterface::MASTER_REQUEST) {
             $event->getResponse()->headers->set(
                 'Surrogate-Control',
