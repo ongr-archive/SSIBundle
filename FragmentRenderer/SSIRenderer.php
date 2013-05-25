@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer;
 use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
 
-class SsiRenderer extends RoutableFragmentRenderer
+class SSIRenderer extends RoutableFragmentRenderer
 {
     /**
      * Fallback inline fragment renderer
