@@ -7,7 +7,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
+     * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
     {

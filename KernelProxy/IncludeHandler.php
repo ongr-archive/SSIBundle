@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  * Sebastian Krebs <krebs.seb@gmail.com>
  *
  * This is a helper class, that act as and replace the closure of the
- * IncludeStrategy-implementations. You should treat it as a closure and don#t
+ * IncludeStrategy-implementations. You should treat it as a closure and don't
  * use it separately.
  *
  * @internal

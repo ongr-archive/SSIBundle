@@ -21,6 +21,9 @@
         "symfony/dependency-injection": ">=2.2,<2.4-dev",
         "symfony/http-kernel": ">=2.2,<2.4-dev"
     },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
     "support": {
         "email": "krebs.seb@gmail.com",
         "issues": "https://github.com/CrunchPHP/SSIBundle/issues"

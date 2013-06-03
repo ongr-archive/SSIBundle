@@ -3,9 +3,9 @@ namespace Crunch\Bundle\SSIBundle\FragmentRenderer;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Fragment\FragmentRendererInterface;
 use Symfony\Component\HttpKernel\UriSigner;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
-use Symfony\Component\HttpKernel\Fragment\InlineFragmentRenderer;
 use Symfony\Component\HttpKernel\Fragment\RoutableFragmentRenderer;
 
 class SSIRenderer extends RoutableFragmentRenderer
@@ -30,7 +30,7 @@ class SSIRenderer extends RoutableFragmentRenderer
     protected $useHeader = false;
     protected $substitute = false;
 
-    public function __construct(UriSigner $signer, InlineFragmentRenderer $defaultStrategy)
+    public function __construct(UriSigner $signer, FragmentRendererInterface $defaultStrategy)
     {
         $this->defaultStrategy = $defaultStrategy;
         $this->signer = $signer;
