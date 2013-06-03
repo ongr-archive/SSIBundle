@@ -1,5 +1,10 @@
 Crunch\SSIBundle
 ================
+
+[![Build Status](https://travis-ci.org/CrunchPHP/SSIBundle.png?branch=master)](https://travis-ci.org/CrunchPHP/SSIBundle)
+[![Total Downloads](https://poser.pugx.org/crunch/ssi-bundle/d/total.png)](https://packagist.org/packages/crunch/ssi-bundle)
+[![Latest Stable Version](https://poser.pugx.org/crunch/ssi-bundle/version.png)](https://packagist.org/packages/crunch/ssi-bundle)
+
 SSI support for Symfony2 applications designed for use with nginx, but should work for others
 as well. It includes a kernel proxy class for substituting the SSI-tags during development, or as fallback.
 
