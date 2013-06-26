@@ -3,7 +3,7 @@
     "description": "Server Side Includes (SSI) fragment renderer for Symfony2 applications",
     "type": "symfony-bundle",
     "keywords": ["ssi"],
-    "homepage": "https://github.com/CrunchPHP/SSIBundle",
+    "homepage": "https://github.com/KingCrunch/SSIBundle",
     "license": "MIT",
     "authors": [
         {
@@ -26,7 +26,7 @@
     },
     "support": {
         "email": "krebs.seb@gmail.com",
-        "issues": "https://github.com/CrunchPHP/SSIBundle/issues"
+        "issues": "https://github.com/KingCrunch/SSIBundle/issues"
     },
     "autoload": {
         "psr-0": {

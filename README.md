@@ -1,7 +1,7 @@
 Crunch\SSIBundle
 ================
 
-[![Build Status](https://travis-ci.org/CrunchPHP/SSIBundle.png?branch=master)](https://travis-ci.org/CrunchPHP/SSIBundle)
+[![Build Status](https://travis-ci.org/KingCrunch/SSIBundle.png?branch=master)](https://travis-ci.org/KingCrunch/SSIBundle)
 [![Total Downloads](https://poser.pugx.org/crunch/ssi-bundle/d/total.png)](https://packagist.org/packages/crunch/ssi-bundle)
 [![Latest Stable Version](https://poser.pugx.org/crunch/ssi-bundle/version.png)](https://packagist.org/packages/crunch/ssi-bundle)
 
