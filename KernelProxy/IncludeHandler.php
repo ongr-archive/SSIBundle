@@ -61,12 +61,17 @@ class IncludeHandler
 
     private function request ($source)
     {
-        $subRequest = Request::create($source, 'GET', array(), $this->request->cookies->all(), array(), $this->request->server->all());
+        $parameters = $files = array();
+        $cookies = $this->request->cookies->all();
+        $server = $this->request->server->all();
+        $subRequest = Request::create($source, 'GET', $parameters, $cookies, array(), $server);
 
         $response = $this->kernel->handle($subRequest, HttpKernelInterface::SUB_REQUEST, true);
 
         if (!$response->isSuccessful()) {
-            throw new \RuntimeException(sprintf('Error when rendering "%s" (Status code is %s).', $subRequest->getUri(), $response->getStatusCode()));
+            $uri = $subRequest->getUri();
+            $statusCode = $response->getStatusCode();
+            throw new \RuntimeException("Error when rendering '$uri' (Status code was $statusCode)");
         }
         return $response;
     }
@@ -74,8 +79,14 @@ class IncludeHandler
     private function updateHeaders (Response $response, Response $subResponse)
     {
         if ($this->response->isCacheable() && $subResponse->isCacheable()) {
-            $maxAge = min($response->headers->getCacheControlDirective('max-age'), $subResponse->headers->getCacheControlDirective('max-age'));
-            $sMaxAge = min($response->headers->getCacheControlDirective('s-maxage'), $subResponse->headers->getCacheControlDirective('s-maxage'));
+            $maxAge = (int) min(
+                $response->headers->getCacheControlDirective('max-age'),
+                $subResponse->headers->getCacheControlDirective('max-age')
+            );
+            $sMaxAge = (int) min(
+                $response->headers->getCacheControlDirective('s-maxage'),
+                $subResponse->headers->getCacheControlDirective('s-maxage')
+            );
             $response->setSharedMaxAge($sMaxAge);
             $response->setMaxAge($maxAge);
         } else {

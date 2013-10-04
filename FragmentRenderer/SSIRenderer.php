@@ -38,7 +38,11 @@ class SSIRenderer extends RoutableFragmentRenderer
 
     public function render($uri, Request $request, array $options = array())
     {
-        if ($this->substitute || $this->useHeader && \strpos($request->headers->get('Surrogate-Capability', ''), 'SSI/1.0')) {
+        if ($this->substitute) {
+            return $this->defaultStrategy->render($uri, $request, $options);
+        }
+
+        if ($this->useHeader && \strpos($request->headers->get('Surrogate-Capability', ''), 'SSI/1.0')) {
             return $this->defaultStrategy->render($uri, $request, $options);
         }
 

@@ -60,8 +60,8 @@ class SSIProxy implements HttpKernelInterface, TerminableInterface
 
     private function addCapabilityHeader (Request $request)
     {
-        $current = $request->headers->get('Surrogate-Capability');
-        $request->headers->set('Surrogate-Capability', ($current ? $current . ', ' : '') . sprintf('symfony2="%s"', 'SSI/1.0'));
+        $current = $request->headers->get('Surrogate-Capability', '');
+        $request->headers->set('Surrogate-Capability', trim("$current,symfony2=\"SSI/1.0\"", ','));
     }
 
     private function responseHasControlHeader (Response $response)
