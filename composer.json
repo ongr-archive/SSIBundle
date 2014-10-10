@@ -1,5 +1,5 @@
 {
-    "name": "crunch/ssi-bundle",
+    "name": "ongr/ssi-bundle",
     "description": "Server Side Includes (SSI) fragment renderer for Symfony2 applications",
     "type": "symfony-bundle",
     "keywords": ["ssi"],
